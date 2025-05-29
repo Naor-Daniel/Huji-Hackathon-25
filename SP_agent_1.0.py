@@ -261,7 +261,7 @@ async def generate_final_profile(update: Update, context: ContextTypes.DEFAULT_T
         uri = "mongodb+srv://Avishai:team16@cluster0.gezcthq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
         client = MongoClient(uri, server_api=ServerApi('1'))
         db = client["therapy_db"]
-        collection = db["therapists"]
+        collection = db["waiting_list"]
 
         therapist_doc = {"text": summary.parts[0].text.strip()}
         collection.insert_one(therapist_doc)
@@ -323,3 +323,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
