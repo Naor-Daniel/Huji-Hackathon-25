@@ -27,6 +27,7 @@ fixed_questions = [
     "מה גילך?",
     "מה מספר הטלפון שלך?",
     "כתובת הקליניקה שלך:",
+    "באילו שפות את/ה מעביר/ה טיפול?",
     "מהו המקצוע / תחום הטיפול שלך?",
     "העלה/י את תעודת המקצוע שלך"
 ]
@@ -99,6 +100,12 @@ async def handle_address_question(session, text, update):
     session["answers"][fixed_questions[session["step"]]] = text
     session["step"] += 1
 
+async def handle_languages_question(session, text, update):
+    if len(text.strip().split()) >= 1:
+        session["answers"][fixed_questions[session["step"]]] = text
+        session["step"] += 1
+    else:
+        await update.message.reply_text("נא להזין שםה אחת לפחות.")
 
 async def handle_profession_question(session, text, update):
     if len(text.strip().split()) >= 1:
@@ -121,6 +128,7 @@ VALIDATION_FUNCS = [
     handle_age_question,
     handle_phone_question,
     handle_address_question,
+    handle_languages_question,
     handle_profession_question,
     handle_certificate_question
 ]
@@ -323,7 +331,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
