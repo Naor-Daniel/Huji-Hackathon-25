@@ -275,7 +275,7 @@ async def generate_final_profile(update: Update, context: ContextTypes.DEFAULT_T
         collection.insert_one(therapist_doc)
 
         # הודעה קצרה למשתמש בטלגרם בלי לחשוף את הסיכום
-        await update.message.reply_text("תודה רבה, סיימנו את השאלון.")
+        await update.message.reply_text("תודה רבה, סיימנו את השאלון. כעת ניצור את הפרופיל שלך ונכניס אותך למאגר. ")
 
     except Exception as e:
         await update.message.reply_text(f"שגיאה בסיכום: {e}")
